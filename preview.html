@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Envestnet DS — Component Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Design Tokens ───────────────────────────────────────────── */
+    :root {
+      /* Colors */
+      --action:             #0074bd;
+      --primary-on-action:  #ffffff;
+      --default:            #1a1a2e;
+      --disabled:           #a0a0a0;
+      --error-warning:      #d91014;
+      --input-divider:      rgba(0, 0, 0, 0.42);
+      --surface:            #ffffff;
+      --surface-subtle:     #f4f6f8;
+      --overlay:            rgba(0, 0, 0, 0.45);
+
+      /* Typography */
+      --font-family-body:        "Red Hat Display", sans-serif;
+      --font-family-header:      "Red Hat Display", sans-serif;
+      --font-size-paragraph-1:   16px;
+      --font-size-paragraph-2:   14px;
+      --font-size-caption:       12px;
+      --font-size-header-5:      14px;
+
+      /* Shape */
+      --corner-radius-medium: 8px;
+      --corner-radius-small:  4px;
+
+      /* Button specifics (from Figma) */
+      --btn-pad-x:    16px;
+      --btn-pad-y:    9.5px;
+      --btn-height:   36px;
+    }
+
+    /* ─── Page shell ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-family-body);
+      font-size:   var(--font-size-paragraph-2);
+      color:       var(--default);
+      background:  var(--surface-subtle);
+      padding:     40px 48px;
+    }
+
+    h1 {
+      font-family: var(--font-family-header);
+      font-size:   24px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      font-size:  var(--font-size-caption);
+      color:      var(--disabled);
+      margin-bottom: 48px;
+    }
+
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-family: var(--font-family-header);
+      font-size:   var(--font-size-header-5);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--disabled);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--input-divider);
+    }
+
+    .row {
+      display:   flex;
+      flex-wrap: wrap;
+      gap:       24px;
+      align-items: flex-start;
+    }
+
+    .col {
+      display:        flex;
+      flex-direction: column;
+      gap:            8px;
+      align-items:    flex-start;
+    }
+
+    .state-label {
+      font-size: var(--font-size-caption);
+      color:     var(--disabled);
+    }
+
+    /* ─── Button ──────────────────────────────────────────────────── */
+    .btn {
+      display:         inline-flex;
+      align-items:     center;
+      justify-content: center;
+      height:          var(--btn-height);
+      padding:         var(--btn-pad-y) var(--btn-pad-x);
+      border-radius:   var(--corner-radius-medium);
+      font-family:     var(--font-family-body);
+      font-size:       var(--font-size-paragraph-2);
+      font-weight:     500;
+      border:          none;
+      cursor:          pointer;
+      transition:      opacity 0.15s, background 0.15s;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--action);
+      color:      var(--primary-on-action);
+    }
+    .btn-primary:hover { background: #005f99; }
+
+    .btn-secondary {
+      background:   transparent;
+      color:        var(--action);
+      border:       2px solid var(--action);
+    }
+    .btn-secondary:hover { background: rgba(0,116,189,0.06); }
+
+    .btn:disabled,
+    .btn.disabled {
+      opacity: 0.5;
+      cursor:  not-allowed;
+      pointer-events: none;
+    }
+
+    /* ─── Checkbox ────────────────────────────────────────────────── */
+    .checkbox-wrap {
+      display:     flex;
+      align-items: center;
+      gap:         8px;
+      cursor:      pointer;
+      font-size:   var(--font-size-paragraph-2);
+      color:       var(--default);
+    }
+
+    .checkbox-wrap input[type="checkbox"] {
+      accent-color: var(--action);
+      width:  16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .checkbox-wrap.disabled {
+      opacity: 0.5;
+      cursor:  not-allowed;
+    }
+    .checkbox-wrap.disabled input { cursor: not-allowed; }
+
+    /* ─── Radio Button ────────────────────────────────────────────── */
+    .radio-wrap {
+      display:     flex;
+      align-items: center;
+      gap:         8px;
+      cursor:      pointer;
+      font-size:   var(--font-size-paragraph-2);
+      color:       var(--default);
+    }
+
+    .radio-wrap input[type="radio"] {
+      accent-color: var(--action);
+      width:  16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .radio-wrap.disabled {
+      opacity: 0.5;
+      cursor:  not-allowed;
+    }
+    .radio-wrap.disabled input { cursor: not-allowed; }
+
+    /* ─── Dropdown ────────────────────────────────────────────────── */
+    .dropdown-wrap {
+      display:        flex;
+      flex-direction: column;
+      gap:            4px;
+      min-width:      200px;
+    }
+
+    .dropdown-wrap .field-label {
+      font-family: var(--font-family-header);
+      font-size:   var(--font-size-header-5);
+      font-weight: 700;
+      color:       rgba(0, 0, 0, 0.85);
+    }
+
+    .dropdown-wrap.disabled .field-label {
+      color: rgba(0, 0, 0, 0.55);
+    }
+
+    /* Wrapper needed for the custom arrow */
+    .dropdown-input {
+      position: relative;
+    }
+
+    .dropdown-wrap select {
+      font-family:        var(--font-family-body);
+      font-size:          var(--font-size-paragraph-2);
+      color:              rgba(0, 0, 0, 0.85);
+      background:         #ffffff;
+      border:             1px solid rgba(0, 0, 0, 0.42);
+      border-radius:      6px;
+      height:             36px;
+      padding:            10px 36px 10px 12px;
+      width:              100%;
+      appearance:         none;
+      -webkit-appearance: none;
+      cursor:             pointer;
+      outline:            none;
+      box-sizing:         border-box;
+    }
+
+    .dropdown-wrap select:hover  { border-color: var(--action); }
+    .dropdown-wrap select:focus  {
+      border-color: rgba(0, 0, 0, 0.42);
+      box-shadow:   0 0 0 2px #ffffff, 0 0 0 4px var(--action);
+    }
+
+    .dropdown-wrap.error select {
+      border:  2px solid var(--error-warning);
+      padding: 9px 35px 9px 11px;
+    }
+
+    .dropdown-wrap.disabled select {
+      background: #f5f5f5;
+      color:      rgba(0, 0, 0, 0.55);
+      cursor:     not-allowed;
+    }
+
+    /* Custom chevron arrow */
+    .dropdown-arrow {
+      position:       absolute;
+      right:          10px;
+      top:            50%;
+      transform:      translateY(-50%);
+      pointer-events: none;
+      display:        flex;
+      align-items:    center;
+    }
+
+    .dropdown-wrap.disabled .dropdown-arrow svg path {
+      stroke: rgba(0, 0, 0, 0.25);
+    }
+
+    /* Error message row */
+    .dropdown-wrap .error-msg {
+      display:     flex;
+      align-items: center;
+      gap:         4px;
+      font-size:   var(--font-size-caption);
+      color:       rgba(0, 0, 0, 0.55);
+    }
+
+    /* ─── Modal (inline preview) ──────────────────────────────────── */
+    .modal-preview {
+      background:    var(--surface);
+      border-radius: var(--corner-radius-medium);
+      box-shadow:    0 8px 32px rgba(0,0,0,0.18);
+      padding:       24px;
+      max-width:     440px;
+      width:         100%;
+    }
+
+    .modal-preview .modal-title {
+      font-family: var(--font-family-header);
+      font-size:   18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .modal-preview .modal-desc {
+      font-size:     var(--font-size-paragraph-2);
+      color:         var(--disabled);
+      margin-bottom: 24px;
+      line-height:   1.5;
+    }
+
+    .modal-preview .modal-actions {
+      display:         flex;
+      gap:             12px;
+      justify-content: flex-end;
+    }
+
+    /* ─── Token table ─────────────────────────────────────────────── */
+    .token-grid {
+      display:               grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap:                   12px;
+    }
+
+    .token-card {
+      background:    var(--surface);
+      border:        1px solid var(--input-divider);
+      border-radius: var(--corner-radius-small);
+      padding:       12px;
+      display:       flex;
+      align-items:   center;
+      gap:           12px;
+    }
+
+    .token-swatch {
+      width:         32px;
+      height:        32px;
+      border-radius: var(--corner-radius-small);
+      border:        1px solid var(--input-divider);
+      flex-shrink:   0;
+    }
+
+    .token-info { overflow: hidden; }
+
+    .token-name {
+      font-size:     var(--font-size-caption);
+      font-weight:   700;
+      white-space:   nowrap;
+      overflow:      hidden;
+      text-overflow: ellipsis;
+    }
+
+    .token-value {
+      font-size: var(--font-size-caption);
+      color:     var(--disabled);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Envestnet Design System</h1>
+  <p class="subtitle">Component Preview · src/components/ui</p>
+
+  <!-- ── Button ─────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-title">Button</div>
+    <div class="row">
+      <div class="col">
+        <span class="state-label">Primary / Default</span>
+        <button class="btn btn-primary">Button</button>
+      </div>
+      <div class="col">
+        <span class="state-label">Primary / Disabled</span>
+        <button class="btn btn-primary" disabled>Button</button>
+      </div>
+      <div class="col">
+        <span class="state-label">Secondary / Default</span>
+        <button class="btn btn-secondary">Button</button>
+      </div>
+      <div class="col">
+        <span class="state-label">Secondary / Disabled</span>
+        <button class="btn btn-secondary" disabled>Button</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Checkbox ───────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-title">Checkbox</div>
+    <div class="row">
+      <div class="col">
+        <span class="state-label">Unchecked</span>
+        <label class="checkbox-wrap">
+          <input type="checkbox" /> Option label
+        </label>
+      </div>
+      <div class="col">
+        <span class="state-label">Checked</span>
+        <label class="checkbox-wrap">
+          <input type="checkbox" checked /> Option label
+        </label>
+      </div>
+      <div class="col">
+        <span class="state-label">Disabled / Unchecked</span>
+        <label class="checkbox-wrap disabled">
+          <input type="checkbox" disabled /> Option label
+        </label>
+      </div>
+      <div class="col">
+        <span class="state-label">Disabled / Checked</span>
+        <label class="checkbox-wrap disabled">
+          <input type="checkbox" checked disabled /> Option label
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Radio Button ───────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-title">Radio Button</div>
+    <div class="row">
+      <div class="col">
+        <span class="state-label">Unselected</span>
+        <label class="radio-wrap">
+          <input type="radio" name="r1" value="a" /> Option A
+        </label>
+      </div>
+      <div class="col">
+        <span class="state-label">Selected</span>
+        <label class="radio-wrap">
+          <input type="radio" name="r1" value="b" checked /> Option B
+        </label>
+      </div>
+      <div class="col">
+        <span class="state-label">Disabled / Unselected</span>
+        <label class="radio-wrap disabled">
+          <input type="radio" name="r2" value="c" disabled /> Option C
+        </label>
+      </div>
+      <div class="col">
+        <span class="state-label">Disabled / Selected</span>
+        <label class="radio-wrap disabled">
+          <input type="radio" name="r2" value="d" checked disabled /> Option D
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Dropdown ───────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-title">Dropdown</div>
+    <div class="row">
+      <div class="col">
+        <span class="state-label">Default</span>
+        <div class="dropdown-wrap">
+          <span class="field-label">Account type</span>
+          <div class="dropdown-input">
+            <select>
+              <option>Individual</option>
+              <option>Joint</option>
+              <option>Trust</option>
+            </select>
+            <span class="dropdown-arrow">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M4 6L8 10L12 6" stroke="rgba(0,0,0,0.55)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <span class="state-label">Error</span>
+        <div class="dropdown-wrap error">
+          <span class="field-label">Account type</span>
+          <div class="dropdown-input">
+            <select>
+              <option value="">Select…</option>
+              <option>Individual</option>
+            </select>
+            <span class="dropdown-arrow">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M4 6L8 10L12 6" stroke="rgba(0,0,0,0.55)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+          <span class="error-msg">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="6" cy="6" r="6" fill="#d91014"/>
+              <rect x="5.25" y="3" width="1.5" height="4" rx="0.75" fill="white"/>
+              <circle cx="6" cy="8.75" r="0.75" fill="white"/>
+            </svg>
+            This field is required
+          </span>
+        </div>
+      </div>
+      <div class="col">
+        <span class="state-label">Disabled</span>
+        <div class="dropdown-wrap disabled">
+          <span class="field-label">Account type</span>
+          <div class="dropdown-input">
+            <select disabled>
+              <option>Individual</option>
+            </select>
+            <span class="dropdown-arrow">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M4 6L8 10L12 6" stroke="rgba(0,0,0,0.25)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Modal ──────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-title">Modal <span style="font-size:10px;font-weight:400;letter-spacing:0">(inline preview — normally rendered as a fixed overlay)</span></div>
+    <div class="modal-preview">
+      <div class="modal-title">Confirm action</div>
+      <p class="modal-desc">Are you sure you want to proceed? This action cannot be undone and will permanently update your account settings.</p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary">Cancel</button>
+        <button class="btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Token reference ────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-title">Design Tokens</div>
+    <div class="token-grid">
+      <div class="token-card">
+        <div class="token-swatch" style="background:#0074bd"></div>
+        <div class="token-info">
+          <div class="token-name">--action</div>
+          <div class="token-value">#0074bd</div>
+        </div>
+      </div>
+      <div class="token-card">
+        <div class="token-swatch" style="background:#ffffff;"></div>
+        <div class="token-info">
+          <div class="token-name">--primary-on-action</div>
+          <div class="token-value">#ffffff</div>
+        </div>
+      </div>
+      <div class="token-card">
+        <div class="token-swatch" style="background:#1a1a2e"></div>
+        <div class="token-info">
+          <div class="token-name">--default</div>
+          <div class="token-value">#1a1a2e</div>
+        </div>
+      </div>
+      <div class="token-card">
+        <div class="token-swatch" style="background:#a0a0a0"></div>
+        <div class="token-info">
+          <div class="token-name">--disabled</div>
+          <div class="token-value">#a0a0a0</div>
+        </div>
+      </div>
+      <div class="token-card">
+        <div class="token-swatch" style="background:#d91014"></div>
+        <div class="token-info">
+          <div class="token-name">--error-warning</div>
+          <div class="token-value">#d91014</div>
+        </div>
+      </div>
+      <div class="token-card">
+        <div class="token-swatch" style="background:rgba(0,0,0,0.42)"></div>
+        <div class="token-info">
+          <div class="token-name">--input-divider</div>
+          <div class="token-value">rgba(0,0,0,0.42)</div>
+        </div>
+      </div>
+      <div class="token-card">
+        <div class="token-swatch" style="background:#f4f6f8;border:1px solid #e0e0e0"></div>
+        <div class="token-info">
+          <div class="token-name">--surface-subtle</div>
+          <div class="token-value">#f4f6f8</div>
+        </div>
+      </div>
+      <div class="token-card">
+        <div class="token-swatch" style="background:transparent;border:1px dashed #c4c4c4;display:flex;align-items:center;justify-content:center;font-size:10px;color:#a0a0a0">Aa</div>
+        <div class="token-info">
+          <div class="token-name">--font-family-body</div>
+          <div class="token-value">Red Hat Display</div>
+        </div>
+      </div>
+      <div class="token-card">
+        <div class="token-swatch" style="background:transparent;border:1px dashed #c4c4c4;display:flex;align-items:center;justify-content:center;font-size:10px;color:#a0a0a0">8px</div>
+        <div class="token-info">
+          <div class="token-name">--corner-radius-medium</div>
+          <div class="token-value">8px</div>
+        </div>
+      </div>
+      <div class="token-card">
+        <div class="token-swatch" style="background:transparent;border:1px dashed #c4c4c4;display:flex;align-items:center;justify-content:center;font-size:10px;color:#a0a0a0">4px</div>
+        <div class="token-info">
+          <div class="token-name">--corner-radius-small</div>
+          <div class="token-value">4px</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
