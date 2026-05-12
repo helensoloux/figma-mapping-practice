@@ -14,6 +14,13 @@
 - Modal → src/components/ui/modal.tsx — use for all confirmations and dialogs; action button row gap must use var(--space-8)
 - RadioButton → src/components/ui/radio-button.tsx — use for single-select option groups
 
+## Checkbox Rules
+- Checkbox list item spacing has three density options:
+  - Compact: var(--space-12)
+  - Default: var(--space-16)
+  - Comfortable: var(--space-24)
+- Figma documentation: https://www.figma.com/design/aMEyZNEKJaOvFbzAHTzbARu9/%E2%9D%96-Envestnet-DS---UI-Guideline---Components?node-id=108605-19556
+
 ## Border Radius Rules
 - ALL components must use var(--corner-radius-small) for border radius by default
 - Exceptions must be explicitly documented — the only current exception is the filter pill which uses var(--corner-radius-xl)
