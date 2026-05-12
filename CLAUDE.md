@@ -7,6 +7,14 @@
 - NEVER use border-radius, colors, spacing, or font values not defined in the token system
 - ALWAYS import tokens.css in any HTML file you create
 
+## Figma Reading Rules
+- When reading a component from Figma, always extract:
+  - Exact dimensions (width, height)
+  - Padding and internal spacing
+  - All states and variants (hover, focus, disabled, error, readOnly, etc.)
+  - Colors and their token mappings
+  - Typography (font family, size, weight, line height)
+
 ## Component Rules
 - Button → src/components/ui/button.tsx — use variant="primary" or "secondary", Corner-radius/Small (6px)
 - Checkbox → src/components/ui/checkbox.tsx — use for all boolean inputs
