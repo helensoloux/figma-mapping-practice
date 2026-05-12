@@ -45,7 +45,7 @@ export const Modal = ({
       <div
         style={{
           background: "var(--bg-0)",
-          borderRadius: "var(--corner-radius-medium)",
+          borderRadius: "var(--corner-radius-small)",
           boxShadow: "var(--shadow-subtle)",
           padding: "var(--modal-padding)",
           width: "100%",

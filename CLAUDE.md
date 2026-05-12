@@ -14,6 +14,10 @@
 - Modal → src/components/ui/modal.tsx — use for all confirmations and dialogs; action button row gap must use var(--space-8)
 - RadioButton → src/components/ui/radio-button.tsx — use for single-select option groups
 
+## Border Radius Rules
+- ALL components must use var(--corner-radius-small) for border radius by default
+- Exceptions must be explicitly documented — the only current exception is the filter pill which uses var(--corner-radius-xl)
+
 ## Spacing Rules
 - ALWAYS reset default browser margins on heading elements (h1–h6) inside components — use margin: 0 unless spacing is explicitly defined using a token (e.g. marginBottom: "var(--space-8)")
 
