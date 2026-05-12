@@ -4,7 +4,7 @@ type Density = 'compact' | 'default' | 'comfortable';
 
 const densitySpacing: Record<Density, string> = {
   compact: 'var(--space-12)',
-  default: 'var(--space-20)',
+  default: 'var(--checkbox-size)',
   comfortable: 'var(--space-24)',
 };
 
@@ -103,8 +103,8 @@ export const Checkbox = ({
         <div
           style={{
             position: "relative",
-            width: "var(--space-20)",
-            height: "var(--space-20)",
+            width: "var(--checkbox-size)",
+            height: "var(--checkbox-size)",
             flexShrink: 0,
           }}
         >
@@ -131,8 +131,8 @@ export const Checkbox = ({
           <div
             aria-hidden
             style={{
-              width: "var(--space-20)",
-              height: "var(--space-20)",
+              width: "var(--checkbox-size)",
+              height: "var(--checkbox-size)",
               borderRadius: "var(--corner-radius-small)",
               background: bg,
               border: `${borderWidth} solid ${borderColor}`,
@@ -171,7 +171,7 @@ export const Checkbox = ({
             fontSize: "var(--font-size-header-6)",
             fontWeight: 700,
             color: "var(--subtle-and-hint)",
-            paddingLeft: "calc(var(--space-20) + var(--space-8))",
+            paddingLeft: "calc(var(--checkbox-size) + var(--space-8))",
           }}
         >
           {errorMessage}
