@@ -19,7 +19,7 @@ export const Button = ({
     display:         "inline-flex",
     alignItems:      "center",
     justifyContent:  "center",
-    height:          "var(--space-36)",
+    height:          "var(--button-height)",
     padding:         "0 var(--space-16)",
     borderRadius:    "var(--corner-radius-small)",
     fontFamily:      "var(--font-family-header)",

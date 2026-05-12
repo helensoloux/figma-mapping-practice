@@ -74,7 +74,7 @@ export const Dropdown = ({
               ? "2px solid var(--error-warning)"
               : "1px solid var(--input-divider)",
             borderRadius: "var(--corner-radius-small)",
-            height: "36px",
+            height: "var(--button-height)",
             padding: error ? "9px 35px 9px 11px" : "10px 36px 10px 12px",
             width: "100%",
             appearance: "none",
