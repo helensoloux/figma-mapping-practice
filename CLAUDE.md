@@ -31,6 +31,9 @@
 - Labels → always Red Hat Display, bold (700), uppercase, with letter-spacing
 - Never use any font not defined in the font token system
 
+## Assets Rules
+- The Envestnet logo (src/assets/envestnet-logo.png) is only used on the login page — do not use it in other components or pages
+
 ## File Structure
 - Components → src/components/ui/
 - Token values → tokens.css (single source of truth)

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import envestnetLogo from './assets/envestnet-logo.png'
 import { Button } from './components/ui/button'
 import { Checkbox } from './components/ui/checkbox'
 import { Modal } from './components/ui/modal'
@@ -63,45 +64,12 @@ export default function App() {
         }}
       >
         {/* Logo */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--space-8)',
-            marginBottom: 'var(--space-32)',
-          }}
-        >
-          <div
-            style={{
-              width: 'var(--space-40)',
-              height: 'var(--space-40)',
-              background: 'var(--action)',
-              borderRadius: 'var(--corner-radius-small)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0,
-            }}
-          >
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <path
-                d="M4 11h14M11 4v14M6 6l10 10M16 6L6 16"
-                stroke="white"
-                strokeWidth="1.75"
-                strokeLinecap="round"
-              />
-            </svg>
-          </div>
-          <span
-            style={{
-              fontFamily: 'var(--font-family-header)',
-              fontSize: 'var(--font-size-paragraph-1)',
-              fontWeight: 700,
-              color: 'var(--default)',
-            }}
-          >
-            Envestnet
-          </span>
+        <div style={{ marginBottom: 'var(--space-32)' }}>
+          <img
+            src={envestnetLogo}
+            alt="Envestnet"
+            style={{ height: 'var(--space-40)', width: 'auto', display: 'block' }}
+          />
         </div>
 
         {/* Header */}
