@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface CheckboxProps {
   label?: string;
@@ -13,6 +13,8 @@ export const Checkbox = ({
   disabled = false,
   onChange,
 }: CheckboxProps) => {
+  const [hovered, setHovered] = useState(false);
+
   return (
     <label
       style={{
@@ -31,11 +33,17 @@ export const Checkbox = ({
         checked={checked}
         disabled={disabled}
         onChange={(e) => onChange?.(e.target.checked)}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
         style={{
           accentColor: "var(--action)",
           width: "var(--space-16)",
           height: "var(--space-16)",
+          borderRadius: "var(--corner-radius-small)",
           cursor: disabled ? "not-allowed" : "pointer",
+          outline: hovered && !disabled ? "2px solid var(--action)" : "none",
+          outlineOffset: "2px",
+          transition: "outline 0.15s",
         }}
       />
       {label}
