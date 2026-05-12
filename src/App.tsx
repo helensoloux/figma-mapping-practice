@@ -152,7 +152,6 @@ export default function App() {
               <Checkbox
                 label="Remember me"
                 checked={remember}
-                density="default"
                 onChange={setRemember}
               />
               <button
@@ -178,7 +177,6 @@ export default function App() {
               checked={false}
               error
               errorMessage="You must agree to the Terms of Service to continue"
-              density="default"
             />
           </div>
 
