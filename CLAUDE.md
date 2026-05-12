@@ -1,3 +1,31 @@
+# Instructions for Claude
+
+## General Rules
+- ALWAYS import components from src/components/ui — never create new ones from scratch
+- ALWAYS use CSS variables from tokens.css — never hardcode hex or px values
+- NEVER create inline styles that duplicate what's in tokens.css
+- NEVER use border-radius, colors, spacing, or font values not defined in the token system
+- ALWAYS import tokens.css in any HTML file you create
+
+## Component Rules
+- Button → src/components/ui/button.tsx — use variant="primary" or "secondary", Corner-radius/Small (6px)
+- Checkbox → src/components/ui/checkbox.tsx — use for all boolean inputs
+- Dropdown → src/components/ui/dropdown.tsx — use for all select inputs
+- Modal → src/components/ui/modal.tsx — use for all confirmations and dialogs
+- RadioButton → src/components/ui/radio-button.tsx — use for single-select option groups
+
+## Typography Rules
+- Headers H1–H6 → always Red Hat Display, always bold (700)
+- Body text → always Red Hat Text, regular (400)
+- Labels → always Red Hat Display, bold (700), uppercase, with letter-spacing
+- Never use any font not defined in the font token system
+
+## File Structure
+- Components → src/components/ui/
+- Token values → tokens.css (single source of truth)
+- Never hardcode values that exist in tokens.css
+
+---
 # Design System Reference
 
 > This file documents the complete design token architecture for use with Claude.
