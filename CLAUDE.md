@@ -42,6 +42,11 @@
 
 ## Spacing Rules
 - ALWAYS reset default browser margins on heading elements (h1–h6) inside components — use margin: 0 unless spacing is explicitly defined using a token (e.g. marginBottom: "var(--space-8)")
+- Always use flexbox with gap for spacing between elements inside containers — never use marginTop or marginBottom to create space between sibling elements
+- Major section gaps: var(--space-24)
+- Field label-to-input gaps: var(--space-8)
+- Inner group gaps: var(--space-8) or var(--space-16)
+- This mirrors Figma auto layout gap behavior
 
 ## Error Message Rules
 - Error message text below form components must use var(--subtle-and-hint) for color and var(--font-size-header-6) for font size (12px bold)

@@ -61,23 +61,22 @@ export default function App() {
           padding: 'var(--modal-padding)',
           width: '100%',
           maxWidth: '480px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 'var(--space-24)',
         }}
       >
         {/* Logo */}
-        <div style={{ marginBottom: 'var(--space-32)' }}>
-          <img
-            src={envestnetLogo}
-            alt="Envestnet"
-            style={{ height: 'var(--space-40)', width: 'auto', display: 'block' }}
-          />
-        </div>
+        <img
+          src={envestnetLogo}
+          alt="Envestnet"
+          style={{ height: 'var(--space-40)', width: 'auto', display: 'block' }}
+        />
 
         {/* Header */}
-        <div style={{ marginBottom: 'var(--space-32)' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-8)' }}>
           <h1
             style={{
-              margin: 0,
-              marginBottom: 'var(--space-8)',
               fontFamily: 'var(--font-family-header)',
               fontSize: 'var(--font-size-header-2)',
               fontWeight: 700,
@@ -88,7 +87,6 @@ export default function App() {
           </h1>
           <p
             style={{
-              margin: 0,
               fontFamily: 'var(--font-family-body)',
               fontSize: 'var(--font-size-paragraph-1)',
               color: 'var(--subtle-and-hint)',
@@ -220,8 +218,6 @@ export default function App() {
         {/* Footer */}
         <p
           style={{
-            margin: 0,
-            marginTop: 'var(--space-24)',
             textAlign: 'center',
             fontFamily: 'var(--font-family-body)',
             fontSize: 'var(--font-size-caption)',
