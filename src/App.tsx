@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from './components/ui/button'
 import { Checkbox } from './components/ui/checkbox'
+import { Modal } from './components/ui/modal'
 
 const inputStyle: React.CSSProperties = {
   fontFamily: 'var(--font-family-body)',
@@ -29,6 +30,9 @@ export default function App() {
   const [remember, setRemember] = useState(false)
   const [emailFocused, setEmailFocused] = useState(false)
   const [passwordFocused, setPasswordFocused] = useState(false)
+  const [forgotOpen, setForgotOpen] = useState(false)
+  const [resetEmail, setResetEmail] = useState('')
+  const [resetEmailFocused, setResetEmailFocused] = useState(false)
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -173,11 +177,36 @@ export default function App() {
             />
           </div>
 
-          {/* Remember me */}
+          {/* Remember me + Forgot password */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Checkbox
+              label="Remember me"
+              checked={remember}
+              onChange={setRemember}
+            />
+            <button
+              type="button"
+              onClick={() => setForgotOpen(true)}
+              style={{
+                fontFamily: 'var(--font-family-body)',
+                fontSize: 'var(--font-size-paragraph-2)',
+                color: 'var(--text-link)',
+                background: 'none',
+                border: 'none',
+                padding: 0,
+                cursor: 'pointer',
+              }}
+            >
+              Forgot password?
+            </button>
+          </div>
+
+          {/* Checkbox error example */}
           <Checkbox
-            label="Remember me"
-            checked={remember}
-            onChange={setRemember}
+            label="I agree to the Terms of Service"
+            checked={false}
+            error
+            errorMessage="You must agree to the Terms of Service to continue"
           />
 
           {/* Divider */}
@@ -186,6 +215,36 @@ export default function App() {
           {/* Submit */}
           <Button label="Sign In" variant="primary" onClick={() => handleSubmit} />
         </form>
+
+        {/* Forgot password modal */}
+        <Modal
+          isOpen={forgotOpen}
+          title="Reset Password"
+          description="Enter your email address and we'll send you a link to reset your password."
+          primaryLabel="Send Reset Link"
+          secondaryLabel="Cancel"
+          onClose={() => setForgotOpen(false)}
+          onPrimary={() => setForgotOpen(false)}
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+            <label htmlFor="reset-email" style={labelStyle}>
+              Email address
+            </label>
+            <input
+              id="reset-email"
+              type="email"
+              value={resetEmail}
+              placeholder="you@example.com"
+              onChange={e => setResetEmail(e.target.value)}
+              onFocus={() => setResetEmailFocused(true)}
+              onBlur={() => setResetEmailFocused(false)}
+              style={{
+                ...inputStyle,
+                boxShadow: resetEmailFocused ? 'var(--shadow-focus)' : 'none',
+              }}
+            />
+          </div>
+        </Modal>
 
         {/* Footer */}
         <p
