@@ -61,6 +61,9 @@
 ## Assets Rules
 - The Envestnet logo (src/assets/envestnet-logo.png) is only used on the login page — do not use it in other components or pages
 
+## Divider Rules
+- Never use divider or separator elements in any pattern or component unless explicitly requested
+
 ## Images Rules
 - All images must preserve aspect ratio using width: auto or height: auto — never set both width and height to fixed values
 - Images inside flex containers must have alignSelf: 'flex-start' to prevent stretching

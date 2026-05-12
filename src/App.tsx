@@ -178,9 +178,6 @@ export default function App() {
             />
           </div>
 
-          {/* Divider */}
-          <div style={{ height: '1px', background: 'var(--divider)' }} />
-
           {/* Submit */}
           <Button label="Sign In" variant="primary" onClick={() => handleSubmit} />
         </form>
