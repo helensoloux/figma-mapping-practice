@@ -1,5 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
+type Density = 'compact' | 'default' | 'comfortable';
+
+const densitySpacing: Record<Density, string> = {
+  compact: 'var(--space-12)',
+  default: 'var(--space-16)',
+  comfortable: 'var(--space-24)',
+};
+
 interface CheckboxProps {
   label?: string;
   checked?: boolean;
@@ -8,6 +16,7 @@ interface CheckboxProps {
   readOnly?: boolean;
   error?: boolean;
   errorMessage?: string;
+  density?: Density;
   onChange?: (checked: boolean) => void;
 }
 
@@ -19,6 +28,7 @@ export const Checkbox = ({
   readOnly = false,
   error = false,
   errorMessage,
+  density,
   onChange,
 }: CheckboxProps) => {
   const [hovered, setHovered] = useState(false);
@@ -75,7 +85,7 @@ export const Checkbox = ({
       : "var(--primary-on-action)";
 
   return (
-    <div style={{ display: "inline-flex", flexDirection: "column", gap: "var(--space-4)" }}>
+    <div style={{ display: "inline-flex", flexDirection: "column", gap: "var(--space-4)", marginBottom: density ? densitySpacing[density] : undefined }}>
       <label
         style={{
           display: "inline-flex",
