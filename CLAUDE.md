@@ -20,6 +20,9 @@
 - Checkbox → src/components/ui/checkbox.tsx — use for all boolean inputs
 - Dropdown → src/components/ui/dropdown.tsx — use for all select inputs
 - Modal → src/components/ui/modal.tsx — use for all confirmations and dialogs; action button row gap must use var(--space-8)
+
+## Modal Rules
+- Modal padding must use var(--modal-padding), which maps to var(--space-24) (24px) — sourced from Figma token Components/Modal/Padding
 - RadioButton → src/components/ui/radio-button.tsx — use for single-select option groups
 
 ## Checkbox Rules
