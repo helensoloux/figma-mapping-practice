@@ -11,8 +11,11 @@
 - Button → src/components/ui/button.tsx — use variant="primary" or "secondary", Corner-radius/Small (6px)
 - Checkbox → src/components/ui/checkbox.tsx — use for all boolean inputs
 - Dropdown → src/components/ui/dropdown.tsx — use for all select inputs
-- Modal → src/components/ui/modal.tsx — use for all confirmations and dialogs
+- Modal → src/components/ui/modal.tsx — use for all confirmations and dialogs; action button row gap must use var(--space-8)
 - RadioButton → src/components/ui/radio-button.tsx — use for single-select option groups
+
+## Spacing Rules
+- ALWAYS reset default browser margins on heading elements (h1–h6) inside components — use margin: 0 unless spacing is explicitly defined using a token (e.g. marginBottom: "var(--space-8)")
 
 ## Typography Rules
 - Headers H1–H6 → always Red Hat Display, always bold (700)
