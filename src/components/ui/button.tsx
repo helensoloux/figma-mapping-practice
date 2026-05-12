@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface ButtonProps {
   label: string;
@@ -13,21 +13,44 @@ export const Button = ({
   disabled = false,
   onClick,
 }: ButtonProps) => {
+  const [hovered, setHovered] = useState(false);
+
+  const base: React.CSSProperties = {
+    display:         "inline-flex",
+    alignItems:      "center",
+    justifyContent:  "center",
+    height:          "var(--space-36)",
+    padding:         "0 var(--space-16)",
+    borderRadius:    "var(--corner-radius-small)",
+    fontFamily:      "var(--font-family-header)",
+    fontSize:        "var(--font-size-header-5)",
+    fontWeight:      700,
+    cursor:          disabled ? "not-allowed" : "pointer",
+    opacity:         disabled ? 0.5 : 1,
+    transition:      "background 0.15s, color 0.15s",
+    border:          "none",
+  };
+
+  const primary: React.CSSProperties = {
+    ...base,
+    backgroundColor: hovered && !disabled ? "var(--action-dark-5)" : "var(--action)",
+    color:           "var(--primary-on-action)",
+  };
+
+  const secondary: React.CSSProperties = {
+    ...base,
+    backgroundColor: hovered && !disabled ? "var(--action-5)" : "transparent",
+    color:           "var(--action)",
+    border:          "2px solid var(--action)",
+  };
+
   return (
     <button
       onClick={onClick}
       disabled={disabled}
-      style={{
-        backgroundColor: variant === "primary" ? "var(--action)" : "transparent",
-        color: variant === "primary" ? "var(--primary-on-action)" : "var(--action)",
-        fontFamily: "var(--font-family-body)",
-        fontSize: "var(--font-size-paragraph-1)",
-        borderRadius: "var(--corner-radius-medium)",
-        padding: "12px 24px",
-        border: variant === "primary" ? "none" : "2px solid var(--action)",
-        cursor: disabled ? "not-allowed" : "pointer",
-        opacity: disabled ? 0.5 : 1,
-      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={variant === "primary" ? primary : secondary}
     >
       {label}
     </button>

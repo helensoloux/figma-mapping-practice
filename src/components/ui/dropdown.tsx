@@ -44,7 +44,7 @@ export const Dropdown = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: "4px",
+        gap: "var(--space-4)",
         fontFamily: "var(--font-family-body)",
       }}
     >
@@ -54,7 +54,7 @@ export const Dropdown = ({
             fontFamily: "var(--font-family-header)",
             fontSize: "var(--font-size-header-5)",
             fontWeight: 700,
-            color: disabled ? "rgba(0,0,0,0.55)" : "rgba(0,0,0,0.85)",
+            color: disabled ? "var(--subtle-and-hint)" : "var(--default)",
           }}
         >
           {label}
@@ -68,12 +68,12 @@ export const Dropdown = ({
           style={{
             fontFamily: "var(--font-family-body)",
             fontSize: "var(--font-size-paragraph-2)",
-            color: disabled ? "rgba(0,0,0,0.55)" : "rgba(0,0,0,0.85)",
-            background: disabled ? "#f5f5f5" : "#ffffff",
+            color: disabled ? "var(--subtle-and-hint)" : "var(--default)",
+            background: disabled ? "var(--bg-2)" : "var(--bg-0)",
             border: error
-              ? "2px solid #d91014"
-              : "1px solid rgba(0,0,0,0.42)",
-            borderRadius: "6px",
+              ? "2px solid var(--error-warning)"
+              : "1px solid var(--input-divider)",
+            borderRadius: "var(--corner-radius-small)",
             height: "36px",
             padding: error ? "9px 35px 9px 11px" : "10px 36px 10px 12px",
             width: "100%",
@@ -100,7 +100,7 @@ export const Dropdown = ({
             justifyContent: "center",
           }}
         >
-          <ChevronDown color={disabled ? "rgba(0,0,0,0.25)" : "rgba(0,0,0,0.55)"} />
+          <ChevronDown color={disabled ? "var(--disabled)" : "var(--subtle-and-hint)"} />
         </div>
       </div>
       {error && errorMessage && (
@@ -108,13 +108,13 @@ export const Dropdown = ({
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "4px",
+            gap: "var(--space-4)",
             fontSize: "var(--font-size-caption)",
-            color: "rgba(0,0,0,0.55)",
+            color: "var(--subtle-and-hint)",
           }}
         >
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style={{ flexShrink: 0 }}>
-            <circle cx="6" cy="6" r="6" fill="#d91014" />
+            <circle cx="6" cy="6" r="6" fill="var(--error-warning)" />
             <rect x="5.25" y="3" width="1.5" height="4" rx="0.75" fill="white" />
             <circle cx="6" cy="8.75" r="0.75" fill="white" />
           </svg>

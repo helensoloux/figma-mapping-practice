@@ -20,7 +20,7 @@ export const RadioButton = ({
       style={{
         display: "flex",
         alignItems: "center",
-        gap: "8px",
+        gap: "var(--space-8)",
         fontFamily: "var(--font-family-body)",
         fontSize: "var(--font-size-paragraph-2)",
         color: disabled ? "var(--disabled)" : "var(--default)",
@@ -36,8 +36,8 @@ export const RadioButton = ({
         onChange={() => onChange?.(value)}
         style={{
           accentColor: "var(--action)",
-          width: "16px",
-          height: "16px",
+          width: "var(--space-16)",
+          height: "var(--space-16)",
           cursor: disabled ? "not-allowed" : "pointer",
         }}
       />
