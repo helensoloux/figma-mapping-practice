@@ -118,4 +118,28 @@
   --shadow-regular: 0 var(--space-2) var(--space-8)  rgba(0, 0, 0, 0.08); /* Black/8  */
   --shadow-subtle:  0 var(--space-4) var(--space-24) rgba(0, 0, 0, 0.16); /* Black/16 */
 
+
+  /* ─────────────────────────────────────────────────────────────────
+     Tier 3: Component Collection
+     Source: ❖ Envestnet DS - UI Guideline & Components (Figma MCP)
+     Collections: Shape · Components · Modal
+  ─────────────────────────────────────────────────────────────────── */
+
+  /* ── Shape — component border radius (Shape collection) ─────── */
+  --component-radius:   var(--corner-radius-small); /* Shape/All components = 6 */
+  --button-radius:      var(--corner-radius-small); /* Shape/Button = 6 */
+
+  /* ── Button (Components collection) ─────────────────────────── */
+  --button-height:      var(--space-36);            /* Button/Size/height = 36 */
+  --button-padding-x:   var(--space-16);            /* Button/Padding/left-right-regular = 16 */
+  --button-padding-y:   9.5px;                      /* Button/Padding/top-bottom-regular = 9.5 */
+
+  /* ── Modal (Modal collection) ───────────────────────────────── */
+  --modal-padding:      var(--space-24);            /* Components/Modal/Padding/Padding = 24 */
+  --modal-width-s:      320px;                      /* Components/Modal/Breakpoints/S = 320 */
+  --modal-width-m:      450px;                      /* Components/Modal/Breakpoints/M (Web Default) = 450 */
+  --modal-width-l:      560px;                      /* Components/Modal/Breakpoints/L = 560 */
+  --modal-width-xl:     720px;                      /* Components/Modal/Breakpoints/XL = 720 */
+  --modal-width-xxl:    960px;                      /* Components/Modal/Breakpoints/XXL = 960 */
+
 }
