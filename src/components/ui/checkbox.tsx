@@ -56,6 +56,14 @@ export const Checkbox = ({
       boxShadow = "var(--shadow-focus)";
     } else if (hovered) {
       boxShadow = "0 0 0 4px var(--action-25)";
+      if (!error) {
+        if (isChecked) {
+          bg = "var(--action-dark-5)";
+          borderColor = "var(--action-dark-5)";
+        } else {
+          borderColor = "var(--action)";
+        }
+      }
     }
   }
 
