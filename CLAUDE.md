@@ -20,6 +20,7 @@
   - Default: var(--space-16)
   - Comfortable: var(--space-24)
 - When 2 or more Checkbox components appear together they form a group and each must include density="default" unless the design specifies compact or comfortable
+- When a wrapper div uses gap to own the spacing between checkboxes, omit density from the individual checkboxes
 - Figma documentation: https://www.figma.com/design/aMEyZNEKJaOvFbzAHTzbARu9/%E2%9D%96-Envestnet-DS---UI-Guideline---Components?node-id=108605-19556
 
 ## Border Radius Rules
