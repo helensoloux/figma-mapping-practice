@@ -4,60 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign In — Envestnet</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700&family=Red+Hat+Text:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+
   <style>
-    /* ─── Design Tokens — Tier 2 Light mode ──────────────────────── */
-    :root {
-      /* Utility */
-      --action:            #0074BD;
-      --error-warning:     #D91014;
-
-      /* Text */
-      --default:           rgba(0, 0, 0, 0.85);
-      --subtle-and-hint:   rgba(0, 0, 0, 0.55);
-      --disabled:          rgba(0, 0, 0, 0.25);
-      --primary-on-action: #FFFFFF;
-
-      /* Neutral */
-      --input-divider:     rgba(0, 0, 0, 0.42);
-      --divider:           rgba(0, 0, 0, 0.15);
-      --bg-0:              #FFFFFF;
-      --bg-1:              #FAFAFA;
-      --bg-2:              #F5F5F5;
-
-      /* Typography */
-      --font-family-header:    "Red Hat Display", sans-serif;
-      --font-family-body:      "Red Hat Text", sans-serif;
-      --font-size-header-2:    28px;
-      --font-size-header-3:    20px;
-      --font-size-header-5:    14px;
-      --font-size-paragraph-1: 16px;
-      --font-size-paragraph-2: 14px;
-      --font-size-caption:     12px;
-
-      /* Corner radius (Corner-radius/ tokens) */
-      --corner-radius-small:  6px;
-      --corner-radius-medium: 12px;
-
-      /* Spacing (Numbers/ scale) */
-      --space-4:  4px;
-      --space-8:  8px;
-      --space-12: 12px;
-      --space-16: 16px;
-      --space-20: 20px;
-      --space-24: 24px;
-      --space-32: 32px;
-      --space-40: 40px;
-    }
-
-    /* ─── Reset ───────────────────────────────────────────────────── */
+    /* ── Reset ─────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ─── Page ────────────────────────────────────────────────────── */
+    /* ── Page ──────────────────────────────────────────────────── */
     body {
       font-family:     var(--font-family-body);
+      font-size:       var(--font-size-paragraph-2);
       color:           var(--default);
       background:      var(--bg-2);
       min-height:      100vh;
@@ -67,17 +27,18 @@
       padding:         var(--space-24);
     }
 
-    /* ─── Card ────────────────────────────────────────────────────── */
+    /* ── Login card ────────────────────────────────────────────── */
     .card {
       background:    var(--bg-0);
       border-radius: var(--corner-radius-medium);
-      box-shadow:    0 2px 8px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.06);
+      box-shadow:    var(--shadow-regular),
+                     0 var(--space-8) var(--space-24) rgba(0, 0, 0, 0.06);
       padding:       var(--space-40);
       width:         100%;
       max-width:     480px;
     }
 
-    /* ─── Logo ────────────────────────────────────────────────────── */
+    /* ── Logo ──────────────────────────────────────────────────── */
     .logo {
       display:       flex;
       align-items:   center;
@@ -86,8 +47,8 @@
     }
 
     .logo-mark {
-      width:           40px;
-      height:          40px;
+      width:           var(--space-40);
+      height:          var(--space-40);
       background:      var(--action);
       border-radius:   var(--corner-radius-small);
       display:         flex;
@@ -103,10 +64,10 @@
       color:       var(--default);
     }
 
-    /* ─── Form header ─────────────────────────────────────────────── */
-    .form-header { margin-bottom: var(--space-32); }
+    /* ── Page header ───────────────────────────────────────────── */
+    .page-header { margin-bottom: var(--space-32); }
 
-    .form-title {
+    .page-title {
       font-family:   var(--font-family-header);
       font-size:     var(--font-size-header-2);
       font-weight:   700;
@@ -114,26 +75,31 @@
       margin-bottom: var(--space-8);
     }
 
-    .form-subtitle {
+    .page-subtitle {
       font-family: var(--font-family-body);
       font-size:   var(--font-size-paragraph-1);
       color:       var(--subtle-and-hint);
     }
 
-    /* ─── Form ────────────────────────────────────────────────────── */
+    /* ── Form layout ───────────────────────────────────────────── */
     .form {
       display:        flex;
       flex-direction: column;
       gap:            var(--space-20);
     }
 
-    /* ─── Field ───────────────────────────────────────────────────── */
+    /* ── Field (shared by all inputs + dropdown) ───────────────── */
     .field {
       display:        flex;
       flex-direction: column;
       gap:            var(--space-4);
     }
 
+    /*
+     * Field label — Header 5 per design system:
+     * Red Hat Display, 14px, 700, rgba(0,0,0,0.85)
+     * (mirrors dropdown.tsx label implementation)
+     */
     .field-label {
       font-family: var(--font-family-header);
       font-size:   var(--font-size-header-5);
@@ -141,7 +107,11 @@
       color:       var(--default);
     }
 
-    /* ─── Text input ─────────────────────────────────────────────── */
+    /*
+     * Text input — follows the same border/radius/height spec as
+     * dropdown.tsx: 1px solid input-divider, Corner-radius/Small,
+     * height 36px (--space-36).
+     */
     .input {
       font-family:        var(--font-family-body);
       font-size:          var(--font-size-paragraph-2);
@@ -149,40 +119,45 @@
       background:         var(--bg-0);
       border:             1px solid var(--input-divider);
       border-radius:      var(--corner-radius-small);
-      height:             36px;
-      padding:            10px 12px;
+      height:             var(--space-36);
+      padding:            var(--space-8) var(--space-12);
       width:              100%;
       outline:            none;
       -webkit-appearance: none;
     }
     .input::placeholder { color: var(--subtle-and-hint); }
-    .input:hover  { border-color: var(--action); }
-    .input:focus  { box-shadow: 0 0 0 2px var(--bg-0), 0 0 0 4px var(--action); }
+    .input:hover        { border-color: var(--action); }
+    .input:focus        { box-shadow: var(--shadow-focus); }
 
-    /* ─── Dropdown (dropdown.tsx) ────────────────────────────────── */
-    .dropdown-input { position: relative; }
+    /*
+     * Dropdown — mirrors dropdown.tsx exactly:
+     * appearance:none, SVG chevron at right 10px,
+     * padding 10px 36px 10px 12px (right clears the arrow),
+     * 1px solid input-divider, Corner-radius/Small, height 36px.
+     */
+    .dropdown-wrap { position: relative; }
 
-    .dropdown-input select {
+    .dropdown-wrap select {
       font-family:        var(--font-family-body);
       font-size:          var(--font-size-paragraph-2);
       color:              var(--default);
       background:         var(--bg-0);
       border:             1px solid var(--input-divider);
       border-radius:      var(--corner-radius-small);
-      height:             36px;
-      padding:            10px 36px 10px 12px;
+      height:             var(--space-36);
+      padding:            10px var(--space-36) 10px var(--space-12);
       width:              100%;
       appearance:         none;
       -webkit-appearance: none;
       cursor:             pointer;
       outline:            none;
     }
-    .dropdown-input select:hover { border-color: var(--action); }
-    .dropdown-input select:focus { box-shadow: 0 0 0 2px var(--bg-0), 0 0 0 4px var(--action); }
+    .dropdown-wrap select:hover { border-color: var(--action); }
+    .dropdown-wrap select:focus { box-shadow: var(--shadow-focus); }
 
     .dropdown-arrow {
       position:       absolute;
-      right:          10px;
+      right:          var(--space-8);
       top:            50%;
       transform:      translateY(-50%);
       pointer-events: none;
@@ -190,14 +165,18 @@
       align-items:    center;
     }
 
-    /* ─── Checkbox row ───────────────────────────────────────────── */
+    /* ── Checkbox + forgot-password row ────────────────────────── */
     .checkbox-row {
       display:         flex;
       align-items:     center;
       justify-content: space-between;
     }
 
-    /* Checkbox (checkbox.tsx) */
+    /*
+     * Checkbox — mirrors checkbox.tsx:
+     * flex + gap-8, accent-color: --action, 16×16px input,
+     * Paragraph 2 / body font.
+     */
     .checkbox-label {
       display:     flex;
       align-items: center;
@@ -209,8 +188,8 @@
     }
     .checkbox-label input[type="checkbox"] {
       accent-color: var(--action);
-      width:        16px;
-      height:       16px;
+      width:        var(--space-16);
+      height:       var(--space-16);
       cursor:       pointer;
       flex-shrink:  0;
     }
@@ -218,50 +197,59 @@
     .forgot-btn {
       font-family:     var(--font-family-body);
       font-size:       var(--font-size-paragraph-2);
-      color:           var(--action);
+      color:           var(--text-link);
       background:      none;
       border:          none;
-      padding:         0;
+      padding:         var(--space-0);
       cursor:          pointer;
       text-decoration: none;
     }
-    .forgot-btn:hover { text-decoration: underline; }
+    .forgot-btn:hover { color: var(--text-link-hover); text-decoration: underline; }
 
-    /* ─── Divider ─────────────────────────────────────────────────── */
+    /* ── Divider ───────────────────────────────────────────────── */
     .divider {
       height:     1px;
       background: var(--divider);
     }
 
-    /* ─── Button (button.tsx) ────────────────────────────────────── */
+    /*
+     * Button — mirrors button.tsx:
+     * padding 12px 24px, Corner-radius/Small (6px) per Figma spec
+     * (button.tsx uses --corner-radius-medium but Figma token
+     * --button = 6, matching Corner-radius/Small).
+     * Primary: --action bg, --primary-on-action text.
+     * Secondary: transparent bg, 2px solid --action border.
+     */
     .btn {
       display:         flex;
       align-items:     center;
       justify-content: center;
-      height:          42px;
-      padding:         12px 24px;
-      border-radius:   var(--corner-radius-medium);
+      padding:         var(--space-12) var(--space-24);
+      border-radius:   var(--corner-radius-small);
       font-family:     var(--font-family-body);
       font-size:       var(--font-size-paragraph-1);
       font-weight:     500;
-      cursor:          pointer;
       border:          none;
+      cursor:          pointer;
       width:           100%;
     }
+
     .btn-primary {
       background: var(--action);
       color:      var(--primary-on-action);
     }
-    .btn-primary:hover { background: #006EB4; }
+    .btn-primary:hover  { background: var(--action-dark-5); }
+    .btn-primary:focus  { outline: none; box-shadow: var(--shadow-focus); }
 
     .btn-secondary {
       background: transparent;
       color:      var(--action);
       border:     2px solid var(--action);
     }
-    .btn-secondary:hover { background: rgba(0, 116, 189, 0.05); }
+    .btn-secondary:hover { background: var(--action-5); }
+    .btn-secondary:focus { outline: none; box-shadow: var(--shadow-focus); }
 
-    /* ─── Footer ─────────────────────────────────────────────────── */
+    /* ── Form footer ───────────────────────────────────────────── */
     .form-footer {
       text-align:  center;
       font-family: var(--font-family-body);
@@ -269,14 +257,19 @@
       color:       var(--subtle-and-hint);
       margin-top:  var(--space-24);
     }
-    .form-footer a { color: var(--action); text-decoration: none; }
-    .form-footer a:hover { text-decoration: underline; }
+    .form-footer a               { color: var(--text-link); text-decoration: none; }
+    .form-footer a:hover         { color: var(--text-link-hover); text-decoration: underline; }
 
-    /* ─── Modal (modal.tsx — fixed overlay) ─────────────────────── */
-    .modal-backdrop {
+    /*
+     * Modal — mirrors modal.tsx:
+     * Fixed overlay with --overlay backdrop, bg-0 card,
+     * Corner-radius/Medium (12px), --shadow-subtle.
+     * title/description/primaryLabel/secondaryLabel props.
+     */
+    .modal-overlay {
       position:        fixed;
-      inset:           0;
-      background:      rgba(0, 0, 0, 0.20);
+      inset:           var(--space-0);
+      background:      var(--overlay);
       display:         flex;
       align-items:     center;
       justify-content: center;
@@ -286,7 +279,7 @@
       pointer-events:  none;
       transition:      opacity 0.18s ease;
     }
-    .modal-backdrop.open {
+    .modal-overlay.open {
       opacity:        1;
       pointer-events: all;
     }
@@ -294,14 +287,14 @@
     .modal-card {
       background:    var(--bg-0);
       border-radius: var(--corner-radius-medium);
-      box-shadow:    0 4px 24px rgba(0, 0, 0, 0.16);
+      box-shadow:    var(--shadow-subtle);
       padding:       var(--space-32);
       width:         100%;
       max-width:     440px;
-      transform:     translateY(6px);
+      transform:     translateY(var(--space-6));
       transition:    transform 0.18s ease;
     }
-    .modal-backdrop.open .modal-card { transform: translateY(0); }
+    .modal-overlay.open .modal-card { transform: translateY(var(--space-0)); }
 
     .modal-title {
       font-family:   var(--font-family-header);
@@ -311,7 +304,7 @@
       margin-bottom: var(--space-8);
     }
 
-    .modal-desc {
+    .modal-description {
       font-family:   var(--font-family-body);
       font-size:     var(--font-size-paragraph-1);
       color:         var(--subtle-and-hint);
@@ -327,20 +320,23 @@
       justify-content: flex-end;
     }
 
+    /* Modal buttons — same token rules as .btn, no full-width */
     .modal-btn {
-      height:        36px;
-      padding:       0 var(--space-24);
-      border-radius: var(--corner-radius-medium);
+      display:       inline-flex;
+      align-items:   center;
+      padding:       var(--space-8) var(--space-24);
+      height:        var(--space-36);
+      border-radius: var(--corner-radius-small);
       font-family:   var(--font-family-body);
       font-size:     var(--font-size-paragraph-2);
       font-weight:   500;
-      cursor:        pointer;
       border:        none;
+      cursor:        pointer;
     }
-    .modal-btn-primary   { background: var(--action); color: var(--primary-on-action); }
-    .modal-btn-primary:hover { background: #006EB4; }
-    .modal-btn-secondary { background: transparent; color: var(--action); border: 2px solid var(--action); }
-    .modal-btn-secondary:hover { background: rgba(0, 116, 189, 0.05); }
+    .modal-btn-primary            { background: var(--action); color: var(--primary-on-action); }
+    .modal-btn-primary:hover      { background: var(--action-dark-5); }
+    .modal-btn-secondary          { background: transparent; color: var(--action); border: 2px solid var(--action); }
+    .modal-btn-secondary:hover    { background: var(--action-5); }
   </style>
 </head>
 <body>
@@ -349,27 +345,27 @@
 
     <!-- Logo -->
     <div class="logo">
-      <div class="logo-mark">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-          <path d="M3 11h16M11 3v16M5.5 5.5l11 11M16.5 5.5l-11 11" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      <div class="logo-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M4 11h14M11 4v14M6 6l10 10M16 6L6 16"
+                stroke="white" stroke-width="1.75" stroke-linecap="round"/>
         </svg>
       </div>
       <span class="logo-name">Envestnet</span>
     </div>
 
-    <!-- Header -->
-    <div class="form-header">
-      <h1 class="form-title">Sign In</h1>
-      <p class="form-subtitle">Access your Envestnet account</p>
+    <!-- Header — Header 2 + Paragraph 1 -->
+    <div class="page-header">
+      <h1 class="page-title">Sign In</h1>
+      <p class="page-subtitle">Access your Envestnet account</p>
     </div>
 
-    <!-- Form -->
     <form class="form" onsubmit="return false;">
 
       <!-- Dropdown component -->
       <div class="field">
         <label class="field-label" for="institution">Institution</label>
-        <div class="dropdown-input">
+        <div class="dropdown-wrap">
           <select id="institution">
             <option value="">Select your institution…</option>
             <option value="envestnet">Envestnet</option>
@@ -377,24 +373,32 @@
             <option value="yodlee">Yodlee</option>
             <option value="redi2">Redi2</option>
           </select>
-          <span class="dropdown-arrow">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M4 6L8 10L12 6" stroke="rgba(0,0,0,0.55)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <span class="dropdown-arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6L8 10L12 6"
+                    stroke="rgba(0,0,0,0.55)"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
             </svg>
           </span>
         </div>
       </div>
 
-      <!-- Username -->
+      <!-- Text input: Username -->
       <div class="field">
         <label class="field-label" for="username">Username</label>
-        <input class="input" type="text" id="username" placeholder="Enter your username" autocomplete="username" />
+        <input class="input" type="text" id="username"
+               placeholder="Enter your username"
+               autocomplete="username" />
       </div>
 
-      <!-- Password -->
+      <!-- Text input: Password -->
       <div class="field">
         <label class="field-label" for="password">Password</label>
-        <input class="input" type="password" id="password" placeholder="Enter your password" autocomplete="current-password" />
+        <input class="input" type="password" id="password"
+               placeholder="Enter your password"
+               autocomplete="current-password" />
       </div>
 
       <!-- Checkbox component + forgot link -->
@@ -403,59 +407,76 @@
           <input type="checkbox" id="remember" />
           Remember me
         </label>
-        <button type="button" class="forgot-btn" onclick="openModal()">Forgot password?</button>
+        <button type="button" class="forgot-btn" onclick="openModal()">
+          Forgot password?
+        </button>
       </div>
 
       <div class="divider"></div>
 
-      <!-- Button component — primary -->
+      <!-- Button component — primary, full width -->
       <button type="submit" class="btn btn-primary">Sign In</button>
 
     </form>
 
-    <div class="form-footer">
+    <!-- Caption / footer -->
+    <p class="form-footer">
       By signing in you agree to our
       <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
-    </div>
+    </p>
 
   </div>
 
-  <!-- Modal component — Forgot password -->
-  <div class="modal-backdrop" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <!-- Modal component — Forgot password
+       Props: title, description, primaryLabel="Send Reset Link",
+              secondaryLabel="Cancel", onClose, onPrimary, onSecondary -->
+  <div class="modal-overlay" id="modal"
+       role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-card">
+
       <h2 class="modal-title" id="modal-title">Reset Password</h2>
-      <p class="modal-desc">
+      <p class="modal-description">
         Enter your email address and we'll send you a link to reset your password.
       </p>
+
       <div class="modal-body">
         <div class="field">
           <label class="field-label" for="reset-email">Email address</label>
-          <input class="input" type="email" id="reset-email" placeholder="you@example.com" />
+          <input class="input" type="email" id="reset-email"
+                 placeholder="you@example.com" />
         </div>
       </div>
+
       <div class="modal-actions">
-        <!-- Button component — secondary -->
-        <button type="button" class="modal-btn modal-btn-secondary" onclick="closeModal()">Cancel</button>
-        <!-- Button component — primary -->
-        <button type="button" class="modal-btn modal-btn-primary">Send Reset Link</button>
+        <!-- secondaryLabel -->
+        <button type="button" class="modal-btn modal-btn-secondary"
+                onclick="closeModal()">Cancel</button>
+        <!-- primaryLabel -->
+        <button type="button" class="modal-btn modal-btn-primary">
+          Send Reset Link
+        </button>
       </div>
+
     </div>
   </div>
 
   <script>
+    const modal = document.getElementById('modal');
+
     function openModal() {
-      document.getElementById('modal').classList.add('open');
+      modal.classList.add('open');
       document.getElementById('reset-email').focus();
     }
+
     function closeModal() {
-      document.getElementById('modal').classList.remove('open');
+      modal.classList.remove('open');
     }
-    document.getElementById('modal').addEventListener('click', function (e) {
-      if (e.target === this) closeModal();
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeModal();
-    });
+
+    // onClose: backdrop click
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+    // onClose: Escape key
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   </script>
 
 </body>

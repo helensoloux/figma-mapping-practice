@@ -1,0 +1,121 @@
+/* ─────────────────────────────────────────────────────────────────
+   Envestnet Design System — CSS Custom Properties
+   Source: CLAUDE.md (3-tier token architecture)
+   Mode:   Light (default)
+───────────────────────────────────────────────────────────────── */
+
+:root {
+
+  /* ── Typography: Font families ──────────────────────────────── */
+  --font-family-header:  "Red Hat Display", sans-serif;
+  --font-family-body:    "Red Hat Text", sans-serif;
+  --font-family-caption: "Red Hat Text", sans-serif;
+  --font-family-label:   "Red Hat Display", sans-serif;
+
+  /* ── Typography: Font sizes ─────────────────────────────────── */
+  --font-size-header-1:    36px;
+  --font-size-header-2:    28px;
+  --font-size-header-3:    20px;
+  --font-size-header-4:    16px;
+  --font-size-header-5:    14px;
+  --font-size-header-6:    12px;
+  --font-size-paragraph-1: 16px;
+  --font-size-paragraph-2: 14px;
+  --font-size-caption:     12px;
+  --font-size-label-1:     16px;
+  --font-size-label-2:     12px;
+
+  /* ── Typography: Line heights (article styles) ──────────────── */
+  --font-line-height-article-1: 21px;
+  --font-line-height-article-2: 18px;
+
+  /* ── Spacing (Numbers/ scale) ───────────────────────────────── */
+  --space-0:   0px;
+  --space-2:   2px;
+  --space-4:   4px;
+  --space-6:   6px;
+  --space-8:   8px;
+  --space-12:  12px;
+  --space-14:  14px;
+  --space-16:  16px;
+  --space-18:  18px;
+  --space-20:  20px;
+  --space-21:  21px;
+  --space-24:  24px;
+  --space-28:  28px;
+  --space-32:  32px;
+  --space-36:  36px;
+  --space-40:  40px;
+  --space-48:  48px;
+  --space-60:  60px;
+  --space-80:  80px;
+  --space-100: 100px;
+  --space-200: 200px;
+
+  /* ── Corner radius (Corner-radius/ tokens) ──────────────────── */
+  --corner-radius-none:   0px;
+  --corner-radius-small:  6px;
+  --corner-radius-medium: 12px;
+  --corner-radius-xl:     9999px;
+
+  /* ── Utility colors (Tier 2 — Light mode) ───────────────────── */
+  --action:          #0074BD;   /* Colors/Brand/Light steelblue/Primary */
+  --caution:         #F8A72D;   /* Colors/Shared/Yellow/Primary */
+  --error-warning:   #D91014;   /* Colors/Shared/Red/Primary */
+  --information:     #005F9E;   /* Colors/Brand/Light steelblue/Shade 25 */
+  --affirmation:     #007C8A;   /* Colors/Shared/Teal/Primary */
+
+  /* ── Text colors (Tier 2 — Light mode) ─────────────────────── */
+  --default:                  rgba(0, 0, 0, 0.85); /* Colors/Alpha/Black/85 */
+  --subtle-and-hint:          rgba(0, 0, 0, 0.55); /* Colors/Alpha/Black/55 */
+  --disabled:                 rgba(0, 0, 0, 0.25); /* Colors/Alpha/Black/25 */
+  --primary-on-action:        #FFFFFF;              /* Colors/Neutral/White */
+  --text-link:                #0074BD;              /* Colors/Brand/Light steelblue/Primary */
+  --text-link-hover:          #006EB4;              /* Colors/Brand/Light steelblue/Shade 5 */
+
+  /* ── Neutral / surface colors (Tier 2 — Light mode) ────────── */
+  --input-divider:    rgba(0, 0, 0, 0.42); /* Colors/Alpha/Black/42 */
+  --divider:          rgba(0, 0, 0, 0.15); /* Colors/Alpha/Black/15 */
+  --bg-0:             #FFFFFF;             /* Colors/Neutral/White */
+  --bg-1:             #FAFAFA;             /* Colors/Neutral/Grey-12 */
+  --bg-2:             #F5F5F5;             /* Colors/Neutral/Grey-10 */
+  --bg-dashboard-0:   #F5F5F5;             /* Colors/Neutral/Grey-10 */
+  --bg-dropdown-0:    #FFFFFF;             /* Colors/Neutral/White */
+
+  /* ── Action background accents (Tier 2 — Light mode) ───────── */
+  --action-5:         rgba(0, 116, 189, 0.05);
+  --action-10:        rgba(0, 116, 189, 0.10);
+  --action-25:        rgba(0, 116, 189, 0.25);
+  --action-light-5:   #F2F8FC;  /* Colors/Brand/Light steelblue/Tint 5 */
+  --action-light-10:  #E6F1F8;  /* Colors/Brand/Light steelblue/Tint 10 */
+  --action-light-25:  #BFDCEE;  /* Colors/Brand/Light steelblue/Tint 25 */
+  --action-dark-5:    #006EB4;  /* Colors/Brand/Light steelblue/Shade 5 */
+  --action-dark-10:   #0068AA;  /* Colors/Brand/Light steelblue/Shade 10 */
+  --action-dark-25:   #005F9E;  /* Colors/Brand/Light steelblue/Shade 25 */
+
+  /* ── Warning background accents (Tier 2 — Light mode) ──────── */
+  --warning-light-5:  #FDF3F3;  /* Colors/Shared/Red/Tint 5 */
+  --warning-light-10: #FBE7E8;  /* Colors/Shared/Red/Tint 10 */
+  --warning-light-25: #F5C3C4;  /* Colors/Shared/Red/Tint 25 */
+  --warning-dark-5:   #CE0F13;  /* Colors/Shared/Red/Shade 5 */
+  --warning-dark-10:  #C30E12;  /* Colors/Shared/Red/Shade 10 */
+  --warning-dark-25:  #A30C0F;  /* Colors/Shared/Red/Shade 25 */
+
+  /* ── Caution background accents (Tier 2 — Light mode) ──────── */
+  --caution-light-5:  #FFFBF5;  /* Colors/Shared/Yellow/Tint 5 */
+  --caution-light-10: #FEF6EA;  /* Colors/Shared/Yellow/Tint 10 */
+  --caution-light-25: #FDE9CA;  /* Colors/Shared/Yellow/Tint 25 */
+
+  /* ── Effects — Overlay (Tier 2 — Light mode) ───────────────── */
+  --overlay: rgba(0, 0, 0, 0.20); /* Colors/Alpha/Black/20 */
+
+  /* ── Effects — Focus ring (Effects/Focus/Action) ────────────── */
+  /* DROP_SHADOW spread-2 bg-0 + spread-4 action, per Figma spec  */
+  --shadow-focus: 0 0 0 var(--space-2) var(--bg-0),
+                  0 0 0 var(--space-4) var(--action);
+
+  /* ── Effects — Drop Shadow (Tier 2 — Light mode) ───────────── */
+  --shadow-regular: 0 var(--space-2) var(--space-8)  rgba(0, 0, 0, 0.08); /* Black/8  */
+  --shadow-subtle:  0 var(--space-4) var(--space-24) rgba(0, 0, 0, 0.16); /* Black/16 */
+
+}
