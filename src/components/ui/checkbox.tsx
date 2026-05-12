@@ -1,53 +1,164 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface CheckboxProps {
   label?: string;
   checked?: boolean;
+  indeterminate?: boolean;
   disabled?: boolean;
+  readOnly?: boolean;
+  error?: boolean;
+  errorMessage?: string;
   onChange?: (checked: boolean) => void;
 }
 
 export const Checkbox = ({
   label,
   checked = false,
+  indeterminate = false,
   disabled = false,
+  readOnly = false,
+  error = false,
+  errorMessage,
   onChange,
 }: CheckboxProps) => {
   const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (inputRef.current) inputRef.current.indeterminate = indeterminate;
+  }, [indeterminate]);
+
+  const interactive = !disabled && !readOnly;
+  const isChecked = checked || indeterminate;
+
+  let bg = "var(--bg-0)";
+  let borderColor = "var(--input-divider)";
+  let borderWidth = "1px";
+  let boxShadow = "none";
+
+  if (disabled) {
+    bg = isChecked ? "var(--action)" : "var(--bg-2)";
+    borderColor = isChecked ? "var(--action)" : "var(--disabled)";
+  } else if (readOnly) {
+    bg = isChecked ? "var(--subtle-and-hint)" : "var(--bg-1)";
+    borderColor = "var(--divider)";
+  } else {
+    if (isChecked) {
+      bg = "var(--action)";
+      borderColor = "var(--action)";
+    }
+    if (error) {
+      borderColor = "var(--error-warning)";
+      borderWidth = isChecked ? "1px" : "2px";
+    }
+    if (focused) {
+      boxShadow = "var(--shadow-focus)";
+    } else if (hovered) {
+      boxShadow = "0 0 0 4px var(--action-25)";
+    }
+  }
+
+  const iconColor =
+    disabled
+      ? "var(--bg-0)"
+      : readOnly
+      ? "var(--divider)"
+      : "var(--primary-on-action)";
 
   return (
-    <label
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "var(--space-8)",
-        fontFamily: "var(--font-family-body)",
-        fontSize: "var(--font-size-paragraph-2)",
-        color: disabled ? "var(--disabled)" : "var(--default)",
-        cursor: disabled ? "not-allowed" : "pointer",
-        opacity: disabled ? 0.5 : 1,
-      }}
-    >
-      <input
-        type="checkbox"
-        checked={checked}
-        disabled={disabled}
-        onChange={(e) => onChange?.(e.target.checked)}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+    <div style={{ display: "inline-flex", flexDirection: "column", gap: "var(--space-4)" }}>
+      <label
         style={{
-          accentColor: "var(--action)",
-          width: "var(--space-16)",
-          height: "var(--space-16)",
-          borderRadius: "var(--corner-radius-small)",
-          cursor: disabled ? "not-allowed" : "pointer",
-          outline: hovered && !disabled ? "2px solid var(--action)" : "none",
-          outlineOffset: "2px",
-          transition: "outline 0.15s",
+          display: "inline-flex",
+          alignItems: "center",
+          gap: "var(--space-8)",
+          fontFamily: "var(--font-family-body)",
+          fontSize: "var(--font-size-paragraph-2)",
+          color: disabled ? "var(--disabled)" : "var(--default)",
+          cursor: disabled ? "not-allowed" : readOnly ? "default" : "pointer",
+          opacity: disabled ? 0.5 : 1,
         }}
-      />
-      {label}
-    </label>
+        onMouseEnter={() => { if (interactive) setHovered(true); }}
+        onMouseLeave={() => { if (interactive) setHovered(false); }}
+      >
+        <div
+          style={{
+            position: "relative",
+            width: "var(--space-16)",
+            height: "var(--space-16)",
+            flexShrink: 0,
+          }}
+        >
+          <input
+            ref={inputRef}
+            type="checkbox"
+            checked={checked}
+            disabled={disabled}
+            readOnly={!interactive}
+            onChange={interactive ? (e) => onChange?.(e.target.checked) : undefined}
+            onFocus={() => { if (interactive) setFocused(true); }}
+            onBlur={() => setFocused(false)}
+            style={{
+              position: "absolute",
+              inset: 0,
+              opacity: 0,
+              margin: 0,
+              width: "100%",
+              height: "100%",
+              cursor: disabled ? "not-allowed" : readOnly ? "default" : "pointer",
+              zIndex: 1,
+            }}
+          />
+          <div
+            aria-hidden
+            style={{
+              width: "var(--space-16)",
+              height: "var(--space-16)",
+              borderRadius: "var(--corner-radius-small)",
+              background: bg,
+              border: `${borderWidth} solid ${borderColor}`,
+              boxShadow,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxSizing: "border-box",
+              transition: "box-shadow 0.15s, background 0.15s, border-color 0.15s",
+              pointerEvents: "none",
+            }}
+          >
+            {indeterminate ? (
+              <svg width="8" height="2" viewBox="0 0 8 2" fill="none">
+                <rect width="8" height="2" rx="1" fill={iconColor} />
+              </svg>
+            ) : checked ? (
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                <path
+                  d="M1 4L3.5 6.5L9 1"
+                  stroke={iconColor}
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            ) : null}
+          </div>
+        </div>
+        {label}
+      </label>
+      {error && errorMessage && !disabled && (
+        <span
+          style={{
+            fontFamily: "var(--font-family-body)",
+            fontSize: "var(--font-size-caption)",
+            color: "var(--error-warning)",
+            paddingLeft: "calc(var(--space-16) + var(--space-8))",
+          }}
+        >
+          {errorMessage}
+        </span>
+      )}
+    </div>
   );
 };
 
