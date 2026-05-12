@@ -59,6 +59,7 @@ export const Modal = ({
               fontSize: "var(--font-size-header-3)",
               fontWeight: 700,
               color: "var(--default)",
+              margin: 0,
               marginBottom: "var(--space-8)",
             }}
           >
