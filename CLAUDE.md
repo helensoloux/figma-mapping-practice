@@ -21,6 +21,10 @@
 ## Spacing Rules
 - ALWAYS reset default browser margins on heading elements (h1–h6) inside components — use margin: 0 unless spacing is explicitly defined using a token (e.g. marginBottom: "var(--space-8)")
 
+## Error Message Rules
+- Error message text below form components must use var(--subtle-and-hint) for color and var(--font-size-header-6) for font size (12px bold)
+- NEVER use red (var(--error-warning) or any error color) for error message text — red is only for the border/outline of the component itself
+
 ## Typography Rules
 - Headers H1–H6 → always Red Hat Display, always bold (700)
 - Body text → always Red Hat Text, regular (400)

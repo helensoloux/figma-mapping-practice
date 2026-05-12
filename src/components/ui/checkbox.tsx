@@ -157,9 +157,10 @@ export const Checkbox = ({
       {error && errorMessage && !disabled && (
         <span
           style={{
-            fontFamily: "var(--font-family-body)",
-            fontSize: "var(--font-size-caption)",
-            color: "var(--error-warning)",
+            fontFamily: "var(--font-family-header)",
+            fontSize: "var(--font-size-header-6)",
+            fontWeight: 700,
+            color: "var(--subtle-and-hint)",
             paddingLeft: "calc(var(--space-16) + var(--space-8))",
           }}
         >
