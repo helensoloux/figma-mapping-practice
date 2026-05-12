@@ -31,6 +31,12 @@ const fieldStyle: React.CSSProperties = {
   gap: 'var(--space-8)',
 }
 
+const formStyle: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 'var(--space-24)',
+}
+
 export default function App() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -105,7 +111,7 @@ export default function App() {
         {/* Form */}
         <form
           onSubmit={handleSubmit}
-          style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-20)' }}
+          style={formStyle}
         >
           {/* Email */}
           <div style={fieldStyle}>
