@@ -23,6 +23,7 @@
 
 ## Modal Rules
 - Modal padding must use var(--modal-padding), which maps to var(--space-24) (24px) — sourced from Figma token Components/Modal/Padding
+- All card and form containers must use var(--modal-padding) for padding
 - RadioButton → src/components/ui/radio-button.tsx — use for single-select option groups
 
 ## Checkbox Rules

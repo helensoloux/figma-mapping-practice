@@ -58,7 +58,7 @@ export default function App() {
           background: 'var(--bg-0)',
           borderRadius: 'var(--corner-radius-small)',
           boxShadow: 'var(--shadow-regular)',
-          padding: 'var(--space-40)',
+          padding: 'var(--modal-padding)',
           width: '100%',
           maxWidth: '480px',
         }}
