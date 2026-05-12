@@ -47,9 +47,9 @@ export const Modal = ({
           background: "var(--bg-0)",
           borderRadius: "var(--corner-radius-medium)",
           boxShadow: "var(--shadow-subtle)",
-          padding: "var(--space-32)",
+          padding: "var(--modal-padding)",
           width: "100%",
-          maxWidth: "440px",
+          maxWidth: "var(--modal-width-m)",
         }}
       >
         {title && (
