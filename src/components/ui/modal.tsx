@@ -46,33 +46,70 @@ export const Modal = ({
         style={{
           background: "var(--bg-0)",
           borderRadius: "var(--corner-radius-small)",
-          boxShadow: "var(--shadow-subtle)",
+          boxShadow: "var(--shadow-regular)",
           padding: "var(--modal-padding)",
           width: "100%",
           maxWidth: "var(--modal-width-m)",
         }}
       >
-        {title && (
-          <h2
+        {(title || onClose) && (
+          <div
             style={{
-              fontFamily: "var(--font-family-header)",
-              fontSize: "var(--font-size-header-3)",
-              fontWeight: 700,
-              color: "var(--default)",
-              margin: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
               marginBottom: "var(--space-8)",
             }}
           >
-            {title}
-          </h2>
+            {title && (
+              <h2
+                style={{
+                  fontFamily: "var(--font-family-header)",
+                  fontSize: "var(--font-size-header-3)",
+                  fontWeight: 700,
+                  color: "var(--default)",
+                  margin: 0,
+                }}
+              >
+                {title}
+              </h2>
+            )}
+            {onClose && (
+              <button
+                onClick={onClose}
+                aria-label="Close"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "var(--space-20)",
+                  height: "var(--space-20)",
+                  background: "none",
+                  border: "none",
+                  padding: 0,
+                  cursor: "pointer",
+                  color: "var(--subtle-and-hint)",
+                  flexShrink: 0,
+                }}
+              >
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path
+                    d="M1 1L11 11M11 1L1 11"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </button>
+            )}
+          </div>
         )}
         {description && (
           <p
             style={{
               fontFamily: "var(--font-family-body)",
-              fontSize: "var(--font-size-paragraph-1)",
+              fontSize: "var(--font-size-paragraph-2)",
               color: "var(--subtle-and-hint)",
-              lineHeight: 1.5,
               marginBottom: "var(--space-24)",
             }}
           >
