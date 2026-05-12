@@ -25,6 +25,12 @@ const labelStyle: React.CSSProperties = {
   color: 'var(--default)',
 }
 
+const fieldStyle: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 'var(--space-8)',
+}
+
 export default function App() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -102,7 +108,7 @@ export default function App() {
           style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-20)' }}
         >
           {/* Email */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+          <div style={fieldStyle}>
             <label htmlFor="email" style={labelStyle}>
               Email
             </label>
@@ -123,7 +129,7 @@ export default function App() {
           </div>
 
           {/* Password */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+          <div style={fieldStyle}>
             <label htmlFor="password" style={labelStyle}>
               Password
             </label>
@@ -192,7 +198,7 @@ export default function App() {
           onClose={() => setForgotOpen(false)}
           onPrimary={() => setForgotOpen(false)}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+          <div style={fieldStyle}>
             <label htmlFor="reset-email" style={labelStyle}>
               Email address
             </label>

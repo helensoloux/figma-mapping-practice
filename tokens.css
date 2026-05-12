@@ -29,6 +29,14 @@
   --font-line-height-article-1: 21px;
   --font-line-height-article-2: 18px;
 
+  /* — Typography: Line heights (headers) — */
+  --font-line-height-header-1: 48px;
+  --font-line-height-header-2: 38px;
+  --font-line-height-header-3: 27px;
+  --font-line-height-header-4: 21px;
+  --font-line-height-header-5: 19px;
+  --font-line-height-header-6: 16px;
+
   /* ── Spacing (Numbers/ scale) ───────────────────────────────── */
   --space-0:   0px;
   --space-2:   2px;

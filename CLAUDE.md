@@ -45,6 +45,10 @@
 - When a wrapper div uses gap to own the spacing between checkboxes, omit density from the individual checkboxes
 - Figma documentation: https://www.figma.com/design/aMEyZNEKJaOvFbzAHTzbARu9/%E2%9D%96-Envestnet-DS---UI-Guideline---Components?node-id=108605-19556
 
+## Form Fields
+- All form fields use a flex column wrapper with `gap: var(--space-8)` (8px) between internal elements (label, input, error/helper text, checkbox + description, etc.). Universal default — applies to text inputs, dropdowns, checkboxes, radios, and any other form control. Document exceptions if any arise.
+- Extract field wrappers into a `fieldStyle` constant rather than repeating inline styles.
+
 ## Border Radius Rules
 - ALL components must use var(--corner-radius-small) for border radius by default
 - Exceptions must be explicitly documented — the only current exception is the filter pill which uses var(--corner-radius-xl)
