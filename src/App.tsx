@@ -145,39 +145,42 @@ export default function App() {
             />
           </div>
 
-          {/* Remember me + Forgot password */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Checkbox
-              label="Remember me"
-              checked={remember}
-              density="default"
-              onChange={setRemember}
-            />
-            <button
-              type="button"
-              onClick={() => setForgotOpen(true)}
-              style={{
-                fontFamily: 'var(--font-family-body)',
-                fontSize: 'var(--font-size-paragraph-2)',
-                color: 'var(--text-link)',
-                background: 'none',
-                border: 'none',
-                padding: 0,
-                cursor: 'pointer',
-              }}
-            >
-              Forgot password?
-            </button>
-          </div>
+          {/* Checkbox group */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-16)' }}>
+            {/* Remember me + Forgot password */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <Checkbox
+                label="Remember me"
+                checked={remember}
+                density="default"
+                onChange={setRemember}
+              />
+              <button
+                type="button"
+                onClick={() => setForgotOpen(true)}
+                style={{
+                  fontFamily: 'var(--font-family-body)',
+                  fontSize: 'var(--font-size-paragraph-2)',
+                  color: 'var(--text-link)',
+                  background: 'none',
+                  border: 'none',
+                  padding: 0,
+                  cursor: 'pointer',
+                }}
+              >
+                Forgot password?
+              </button>
+            </div>
 
-          {/* Checkbox error example */}
-          <Checkbox
-            label="I agree to the Terms of Service"
-            checked={false}
-            error
-            errorMessage="You must agree to the Terms of Service to continue"
-            density="default"
-          />
+            {/* Checkbox error example */}
+            <Checkbox
+              label="I agree to the Terms of Service"
+              checked={false}
+              error
+              errorMessage="You must agree to the Terms of Service to continue"
+              density="default"
+            />
+          </div>
 
           {/* Divider */}
           <div style={{ height: '1px', background: 'var(--divider)' }} />
