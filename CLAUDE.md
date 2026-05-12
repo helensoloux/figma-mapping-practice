@@ -1,5 +1,14 @@
 # Instructions for Claude
 
+## Working Style
+- Always explain what you're about to do before asking Elena to type anything in the terminal
+- Always start with global rules before local fixes
+- Always wait for a screenshot before giving the next instruction
+- Always read Figma first before implementing any component
+- Always use gap over margins for spacing between siblings
+- Never add dividers unless explicitly requested
+- gpush after every meaningful change
+
 ## General Rules
 - ALWAYS import components from src/components/ui — never create new ones from scratch
 - ALWAYS use CSS variables from tokens.css — never hardcode hex or px values
