@@ -70,7 +70,7 @@ export default function App() {
         <img
           src={envestnetLogo}
           alt="Envestnet"
-          style={{ height: 'var(--space-40)', width: 'auto', display: 'block' }}
+          style={{ height: 'var(--space-40)', width: 'auto', display: 'block', alignSelf: 'flex-start' }}
         />
 
         {/* Header */}

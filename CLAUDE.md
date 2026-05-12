@@ -61,6 +61,10 @@
 ## Assets Rules
 - The Envestnet logo (src/assets/envestnet-logo.png) is only used on the login page — do not use it in other components or pages
 
+## Images Rules
+- All images must preserve aspect ratio using width: auto or height: auto — never set both width and height to fixed values
+- Images inside flex containers must have alignSelf: 'flex-start' to prevent stretching
+
 ## File Structure
 - Components → src/components/ui/
 - Token values → tokens.css (single source of truth)
