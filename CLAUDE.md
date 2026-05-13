@@ -68,6 +68,9 @@ Never touch code before both checks pass.
 - Inner group gaps: var(--space-8) or var(--space-16)
 - This mirrors Figma auto layout gap behavior
 
+## Side Panel Rules
+- Panel padding must use var(--space-32) (32px) — applied to the panel container itself, not as flex gap or child margin
+
 ## Error Message Rules
 - Error message text below form components must use var(--subtle-and-hint) for color and var(--font-size-header-6) for font size (12px bold)
 - NEVER use red (var(--error-warning) or any error color) for error message text — red is only for the border/outline of the component itself
