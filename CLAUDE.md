@@ -1,6 +1,13 @@
 # Instructions for Claude
 
 ## Working Style
+
+### Workflow order — mandatory before any code change
+1. Inspect Figma for the component spec (dimensions, states, tokens, typography)
+2. Audit CLAUDE.md to confirm relevant rules are current
+3. Only then write or fix code
+Never touch code before both checks pass.
+
 - Always explain what you're about to do before asking Elena to type anything in the terminal
 - Always start with global rules before local fixes
 - Always wait for a screenshot before giving the next instruction
