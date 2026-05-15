@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 interface ButtonProps {
   label: string;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "tertiary";
   disabled?: boolean;
   onClick?: () => void;
 }
@@ -44,13 +44,22 @@ export const Button = ({
     border:          "2px solid var(--action)",
   };
 
+  const tertiary: React.CSSProperties = {
+    ...base,
+    backgroundColor: hovered && !disabled ? "var(--action-5)" : "transparent",
+    color:           disabled ? "var(--disabled)" : "var(--action)",
+    border:          "none",
+  };
+
+  const styleMap = { primary, secondary, tertiary };
+
   return (
     <button
       onClick={onClick}
       disabled={disabled}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      style={variant === "primary" ? primary : secondary}
+      style={styleMap[variant]}
     >
       {label}
     </button>
