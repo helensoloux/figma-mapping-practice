@@ -43,7 +43,7 @@ Never touch code before both checks pass.
 - RadioButton → src/components/ui/radio-button.tsx — use for single-select option groups
 
 ## Checkbox Rules
-- Checkbox box size: 20×20px — always use var(--checkbox-size) for width and height
+- Checkbox box size: 20×20px — always use var(--selection-control-size) for width and height
 - Checkbox list item spacing has three density options:
   - Compact: var(--space-12)
   - Default: var(--space-16)

@@ -142,8 +142,8 @@
   --button-padding-x:   var(--space-16);            /* Button/Padding/left-right-regular = 16 */
   --button-padding-y:   9.5px;                      /* Button/Padding/top-bottom-regular = 9.5 */
 
-  /* ── Checkbox (Components collection) ──────────────────────── */
-  --checkbox-size:      var(--space-20);             /* Checkbox/Size = 20 */
+  /* ── Selection controls (Components collection) ────────────── */
+  --selection-control-size: var(--space-20);         /* Checkbox box + Radio circle = 20 */
 
   /* ── Modal (Modal collection) ───────────────────────────────── */
   --modal-padding:      var(--space-24);            /* Components/Modal/Padding/Padding = 24 */

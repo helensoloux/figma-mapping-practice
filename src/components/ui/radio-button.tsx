@@ -35,8 +35,8 @@ export const RadioButton = ({
         onChange={() => onChange?.(value)}
         style={{
           accentColor: "var(--action)",
-          width: "var(--space-16)",
-          height: "var(--space-16)",
+          width: "var(--selection-control-size)",
+          height: "var(--selection-control-size)",
           cursor: disabled ? "not-allowed" : "pointer",
         }}
       />

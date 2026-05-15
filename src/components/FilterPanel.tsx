@@ -1,6 +1,8 @@
 import React from 'react'
 import { Button } from './ui/button'
+import { Checkbox } from './ui/checkbox'
 import { Dropdown } from './ui/dropdown'
+import { RadioButton } from './ui/radio-button'
 
 const panelStyle: React.CSSProperties = {
   width: '450px',
@@ -27,6 +29,12 @@ const contentStyle: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
   gap: 'var(--space-24)',
+}
+
+const checkboxGroupStyle: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 'var(--space-16)',
 }
 
 const footerStyle: React.CSSProperties = {
@@ -63,6 +71,14 @@ export default function FilterPanel() {
         <Dropdown label="Message type" options={['Select', 'Alert', 'Notification', 'Reminder']} />
         <Dropdown label="Category" options={['Select', 'System', 'Marketing', 'Compliance']} />
         <Dropdown label="Action required" options={['Select', 'Yes', 'No']} />
+
+        <div style={checkboxGroupStyle}>
+          <Checkbox label="Equities" />
+          <Checkbox label="Fixed Income" />
+          <Checkbox label="Alternatives" />
+        </div>
+
+        <RadioButton label="Include managed accounts" />
       </div>
 
       <div style={footerStyle}>
