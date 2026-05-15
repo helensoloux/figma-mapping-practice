@@ -39,9 +39,9 @@ export const Button = ({
 
   const secondary: React.CSSProperties = {
     ...base,
-    backgroundColor: hovered && !disabled ? "var(--action-5)" : "transparent",
+    backgroundColor: hovered && !disabled ? "var(--action-5)" : "var(--bg-0)",
     color:           "var(--action)",
-    border:          "2px solid var(--action)",
+    border:          "1px solid var(--input-divider)",
   };
 
   const tertiary: React.CSSProperties = {

@@ -37,6 +37,21 @@ Never touch code before both checks pass.
 - Dropdown → src/components/ui/dropdown.tsx — use for all select inputs
 - Modal → src/components/ui/modal.tsx — use for all confirmations and dialogs; action button row gap must use var(--space-8)
 
+## Button Rules
+- Button → src/components/ui/button.tsx — three variants: `primary`, `secondary`, `tertiary`
+- Height: 36px via `var(--button-height)` for all variants
+- Padding: 16px left/right via `var(--button-padding-x)` for all variants
+- Border radius: 6px via `var(--corner-radius-small)` (Corner-radius/Small) for all variants
+- Border width: 1px for variants that have a border — never 2px
+- Typography: Header 5 — Red Hat Display, 14px, bold (700) via `var(--font-family-header)` and `var(--font-size-header-5)`
+- Icon↔label gap (when icons are added): `var(--space-8)` (8px)
+- Visual contract per variant (default state):
+  - **Primary** — background `var(--action)`, text `var(--primary-on-action)`, no border. Figma node ID: TBD
+  - **Secondary** — background `var(--bg-0)`, border `1px solid var(--input-divider)`, text `var(--action)`. Figma node ID: 53725-152297. Per UIDEV-1766 the border token migrated from `--divider` to `--input-divider` — do not revert.
+  - **Tertiary** — background `transparent`, no border, text `var(--action)`. Figma node ID: TBD
+- Hover, focus, clicked, disabled, and loading states are NOT yet specified — inspect Figma before implementing any of them
+- Figma documentation: https://www.figma.com/design/aMEyZNEKJaOvFbzAHTzbARu9/%E2%9D%96-Envestnet-DS---UI-Guideline---Components?node-id=53725-152297
+
 ## Modal Rules
 - Modal padding must use var(--modal-padding), which maps to var(--space-24) (24px) — sourced from Figma token Components/Modal/Padding
 - All card and form containers must use var(--modal-padding) for padding
